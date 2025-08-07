@@ -11,6 +11,7 @@ except OSError:
     download("en_core_web_sm")
     nlp = spacy.load("en_core_web_sm")
 
+
 from nltk.corpus import stopwords
 import nltk
 nltk.download('stopwords')
