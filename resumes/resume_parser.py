@@ -1,13 +1,15 @@
 import fitz  # PyMuPDF
 import re
-
 import spacy
+import importlib.util
 
+# Check if model is available, if not, download and install
 try:
     nlp = spacy.load("en_core_web_sm")
 except OSError:
-    raise RuntimeError("Spacy model not loaded. Make sure en_core_web_sm is in requirements.txt as a .whl.")
-
+    from spacy.cli import download
+    download("en_core_web_sm")
+    nlp = spacy.load("en_core_web_sm")
 
 from nltk.corpus import stopwords
 import nltk
