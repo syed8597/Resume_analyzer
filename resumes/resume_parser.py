@@ -2,8 +2,9 @@ import fitz  # PyMuPDF
 import re
 import spacy
 from nltk.corpus import stopwords
+import en_core_web_sm
+nlp = en_core_web_sm.load()
 
-nlp = spacy.load("en_core_web_sm")
 STOPWORDS = set(stopwords.words("english"))
 
 # ✅ Extract raw text from uploaded PDF
