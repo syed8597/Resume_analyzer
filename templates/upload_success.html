@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Resume Results{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-10 col-lg-8">
+
+    <div class="card shadow-sm p-4">
+      <h2 class="text-success text-center mb-4">✅ Resume Uploaded Successfully!</h2>
+
+      {% if skills %}
+        <p><strong>🛠 Skills:</strong> {{ skills|join:", " }}</p>
+      {% endif %}
+
+      {% if experience %}
+        <p><strong>📅 Experience:</strong> {{ experience }} years</p>
+      {% endif %}
+
+      {% if top_matches %}
+        <h4 class="mt-4 mb-3">📌 Top Job Matches</h4>
+        <table class="table table-bordered table-hover">
+          <thead class="table-light">
+            <tr>
+              <th>Job Title</th>
+              <th>Match %</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for job, score in top_matches %}
+              <tr>
+                <td>{{ job }}</td>
+                <td>{{ score }}%</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endif %}
+
+      <div class="mt-4 d-flex  justify-content-center flex-wrap">
+        {% comment %} <a href="/resumes/chatbot/" class="btn btn-info mb-2">💬 Ask Career Bot</a> {% endcomment %}
+        <a href="/resumes/upload/" class="btn btn-secondary mb-2 ">⬅️ Upload Another</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

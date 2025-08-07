@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<h2 class="text-center mb-4">Sign Up</h2>
+
+<div class="row justify-content-center">
+  <div class="col-md-6 col-lg-5">
+
+    <form method="post" novalidate>
+      {% csrf_token %}
+
+      <!-- ✅ Show Form Errors -->
+      {% if form.errors %}
+        <div class="alert alert-danger">
+          <ul class="mb-0">
+            {% for field in form %}
+              {% for error in field.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      <!-- ✅ Username Field -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="id_username">Username</label>
+        <input type="text" name="username" id="id_username" class="form-control" required value="{{ form.data.username }}">
+      </div>
+
+      <!-- ✅ Email Field -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="id_email">Email</label>
+        <input type="email" name="email" id="id_email" class="form-control" required value="{{ form.data.email }}">
+      </div>
+
+      <!-- ✅ Password1 Field -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="id_password1">Password</label>
+        <input type="password" name="password1" id="id_password1" class="form-control" required>
+      </div>
+
+      <!-- ✅ Password2 Field -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="id_password2">Confirm Password</label>
+        <input type="password" name="password2" id="id_password2" class="form-control" required>
+      </div>
+
+      <!-- ✅ Submit Button -->
+      <div class="d-grid mb-4">
+        <button type="submit" class="btn btn-success btn-block">Sign Up</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

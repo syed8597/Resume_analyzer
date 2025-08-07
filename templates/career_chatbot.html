@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Career Chatbot{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8 col-lg-6">
+
+    <div class="card shadow-sm p-4">
+      <h2 class="text-center text-success mb-4">💬 Career Advisor Chatbot</h2>
+
+      <!-- ✅ Chat Form -->
+      <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="message" class="form-label">Ask something...</label>
+          <textarea class="form-control" name="message" id="message" rows="4" placeholder="Ask about jobs, skills, or resume tips..." required></textarea>
+        </div>
+        <div class="d-grid">
+          <button type="submit" class="btn btn-success">🚀 Send</button>
+        </div>
+      </form>
+
+      <!-- ✅ Bot Reply -->
+      {% if bot_reply %}
+        <div class="alert alert-info mt-4">
+          <strong>🤖 Bot:</strong><br>
+          {{ bot_reply }}
+        </div>
+      {% endif %}
+
+      <!-- ✅ Back Button -->
+      <div class="text-center mt-3">
+        <a href="/resumes/upload/" class="btn btn-secondary">⬅️ Back to Upload</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

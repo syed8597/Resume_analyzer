@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<h2 class="text-center mb-4">Login</h2>
+
+<div class="row justify-content-center">
+  <div class="col-md-6 col-lg-5">
+
+    <form method="post">
+      {% csrf_token %}
+
+      <!-- ✅ Non-field errors -->
+      {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+          {% for error in form.non_field_errors %}
+            {{ error }}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <!-- ✅ Username Field -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="id_username">Username</label>
+        <input type="text" name="username" id="id_username" class="form-control" required value="{{ form.data.username }}">
+        {% if form.username.errors %}
+          <div class="text-danger small">
+            {{ form.username.errors.0 }}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- ✅ Password Field -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="id_password">Password</label>
+        <input type="password" name="password" id="id_password" class="form-control" required>
+        {% if form.password.errors %}
+          <div class="text-danger small">
+            {{ form.password.errors.0 }}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- ✅ Submit Button -->
+      <div class="d-grid mb-4">
+        <button type="submit" class="btn btn-primary">Login</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
