@@ -7,7 +7,7 @@ import os
 from django.conf import settings
 # from .ml_model import match_job
 from .ml_model import match_top_jobs
-from .langchain_bot import ask_career_bot
+# from .langchain_bot import ask_career_bot
 
 @login_required
 def upload_resume(request):
