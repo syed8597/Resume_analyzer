@@ -1,15 +1,17 @@
 import fitz  # PyMuPDF
 import re
-# import spacy
 import importlib.util
 
 # Check if model is available, if not, download and install
-# try:
-#     nlp = spacy.load("en_core_web_sm")
-# except OSError:
-#     from spacy.cli import download
-#     download("en_core_web_sm")
-#     nlp = spacy.load("en_core_web_sm")
+import spacy
+from spacy.cli import download
+
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    download("en_core_web_sm")
+    nlp = spacy.load("en_core_web_sm")
+
 
 
 from nltk.corpus import stopwords
