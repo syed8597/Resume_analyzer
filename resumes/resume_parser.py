@@ -4,12 +4,14 @@ import importlib.util
 
 # Check if model is available, if not, download and install
 import spacy
-from spacy.cli import download
+import subprocess
+import os
 
 try:
     nlp = spacy.load("en_core_web_sm")
 except OSError:
-    download("en_core_web_sm")
+    print("Downloading 'en_core_web_sm' model...")
+    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
     nlp = spacy.load("en_core_web_sm")
 
 
